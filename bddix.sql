@@ -121,7 +121,7 @@ where h.nom = 'Goudurix';
 
 --20. Date de première prise de trophée. (03/04/52)
 select MIN(t.date_prise) 
-from trophee t 
+from trophee t;
 
 --21. Nombre de louches de Potion magique n°2 (c'est le libellé de la potion) absorbées. (19)
 select sum(a.quantite) 
@@ -131,15 +131,15 @@ where p.lib_potion = 'Potion magique n°2';
 
 --22. Superficie la plus grande. (895)
 select MAX(r.superficie)
-from resserre r 
+from resserre r;
 
 
 --***
 
 --23. Nombre d'habitants par village (nom du village, nombre). (7 lignes)
-select v.nom_village, count(h.num_hab) 
-from village v 
-inner join habitant h on h.num_village = h.num_village 
+select v.nom_village, count(h.num_hab)
+from village v
+left join habitant h on v.num_village = h.num_village
 group by v.nom_village;
 
 
@@ -147,7 +147,7 @@ group by v.nom_village;
 select count(t.num_trophee), h.nom  
 from trophee t 
 join habitant h on h.num_hab = t.num_preneur 
-group by h.nom
+group by h.nom;
 
 --25. Moyenne d'âge des habitants par province (nom de province, calcul). (3 lignes)
 select p.nom_province, avg(h.age) 
